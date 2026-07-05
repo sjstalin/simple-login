@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="geolocation=(), camera=(), microphone=()"
+    />
+    <meta
+      name="description"
+      content="Smith C. D. — Software Engineer crafting scalable .NET, web and blockchain solutions."
+    />
+    <title>Smith C. D. | Software Engineer</title>
+    <link rel="icon" href="Assets/sm.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Decorative background -->
+    <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+    <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+    <header id="header">
+      <nav class="navbar" aria-label="Primary">
+        <a href="#hero" class="logo" aria-label="Home">
+          <img src="Assets/sm.png" alt="Smith C D logo" />
+          <span class="logo-text">smith<span class="accent">.dev</span></span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#milestones" class="nav-link">Milestones</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a
+              href="https://github.com/Smith-Coder"
+              class="nav-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </li>
+        </ul>
+
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <section id="hero" class="hero-section">
+        <canvas id="particles" aria-hidden="true"></canvas>
+        <div class="hero-inner">
+          <p class="hero-greeting reveal">
+            <span class="wave" aria-hidden="true">👋</span> Hey there, I'm
+          </p>
+          <h1 class="hero-name reveal delay-1">Smith&nbsp;C.&nbsp;D.</h1>
+          <h2 class="hero-role reveal delay-2">
+            <span class="typed-prefix">I build&nbsp;</span
+            ><span id="typed" class="typed"></span><span class="cursor">|</span>
+          </h2>
+          <p class="hero-tagline reveal delay-3">
+            Software engineer turning ideas into fast, scalable products —
+            from .NET backends and modern web apps to smart contracts on the
+            blockchain.
+          </p>
+          <div class="hero-actions reveal delay-4">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fas fa-rocket"></i> Explore My Work
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <i class="fas fa-paper-plane"></i> Get In Touch
+            </a>
+          </div>
+          <div class="hero-socials reveal delay-5">
+            <a
+              href="https://github.com/Smith-Coder"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/smith-c-d"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <a href="#about" class="scroll-hint" aria-label="Scroll to about section">
+          <span class="mouse"><span class="wheel"></span></span>
+        </a>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section id="about" class="section">
+        <div class="section-head reveal">
+          <span class="section-kicker">// about me</span>
+          <h2>Engineer. Builder. Problem&nbsp;Solver.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              I'm a software engineer with deep expertise in
+              <strong>.NET Core</strong>, <strong>ASP.NET MVC</strong>,
+              <strong>Entity Framework</strong> and DevOps, paired with strong
+              front-end chops in <strong>Angular</strong> and
+              <strong>React</strong>.
+            </p>
+            <p>
+              I'm fluent across <strong>C#, Java, TypeScript, JavaScript,
+              Python and C++</strong>, comfortable with <strong>MySQL</strong>
+              and <strong>MongoDB</strong>, and I ship to the cloud on
+              <strong>AWS</strong> and <strong>Azure</strong>. On the frontier
+              side, I build blockchain apps with <strong>Solidity</strong> and
+              Truffle, and I love weaving <strong>AI</strong> into real
+              products.
+            </p>
+            <p>
+              What drives me? Scalable architecture, elegant solutions to messy
+              problems, and teams that build great things together.
+            </p>
+          </div>
+          <div class="about-cards">
+            <div class="about-card reveal delay-1">
+              <i class="fas fa-server"></i>
+              <h3>Backend &amp; Cloud</h3>
+              <p>.NET Core APIs, microservices &amp; CI/CD on AWS / Azure</p>
+            </div>
+            <div class="about-card reveal delay-2">
+              <i class="fas fa-laptop-code"></i>
+              <h3>Frontend</h3>
+              <p>Snappy, responsive UIs with Angular &amp; React</p>
+            </div>
+            <div class="about-card reveal delay-3">
+              <i class="fas fa-link"></i>
+              <h3>Blockchain</h3>
+              <p>Smart contracts in Solidity, dApps with Truffle</p>
+            </div>
+            <div class="about-card reveal delay-4">
+              <i class="fas fa-brain"></i>
+              <h3>AI Curious</h3>
+              <p>Integrating intelligence into everyday applications</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SKILLS ============ -->
+      <section id="skills" class="section">
+        <div class="section-head reveal">
+          <span class="section-kicker">// toolbox</span>
+          <h2>Skills &amp; Technologies</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card reveal"><img src="Assets/c-sharp.png" alt="" /><span>C#</span></div>
+          <div class="skill-card reveal"><img src="Assets/dotnet.png" alt="" /><span>.NET Core</span></div>
+          <div class="skill-card reveal"><img src="Assets/ef.png" alt="" /><span>Entity Framework</span></div>
+          <div class="skill-card reveal"><img src="Assets/Angular.png" alt="" /><span>Angular</span></div>
+          <div class="skill-card reveal"><img src="Assets/react.png" alt="" /><span>React</span></div>
+          <div class="skill-card reveal"><img src="Assets/node.png" alt="" /><span>Node.js</span></div>
+          <div class="skill-card reveal"><img src="Assets/js.png" alt="" /><span>JavaScript</span></div>
+          <div class="skill-card reveal"><img src="Assets/typescript.png" alt="" /><span>TypeScript</span></div>
+          <div class="skill-card reveal"><img src="Assets/html.png" alt="" /><span>HTML5</span></div>
+          <div class="skill-card reveal"><img src="Assets/css.png" alt="" /><span>CSS3</span></div>
+          <div class="skill-card reveal"><img src="Assets/mysql.png" alt="" /><span>MySQL</span></div>
+          <div class="skill-card reveal"><img src="Assets/git.png" alt="" /><span>Git</span></div>
+          <div class="skill-card reveal"><img src="Assets/postman.png" alt="" /><span>Postman</span></div>
+          <div class="skill-card reveal"><img src="Assets/azure.png" alt="" /><span>Azure</span></div>
+          <div class="skill-card reveal"><i class="fab fa-aws skill-icon"></i><span>AWS</span></div>
+          <div class="skill-card reveal"><i class="fas fa-database skill-icon"></i><span>MongoDB</span></div>
+          <div class="skill-card reveal"><i class="fab fa-ethereum skill-icon"></i><span>Solidity</span></div>
+          <div class="skill-card reveal"><i class="fab fa-python skill-icon"></i><span>Python</span></div>
+          <div class="skill-card reveal"><i class="fab fa-java skill-icon"></i><span>Java</span></div>
+          <div class="skill-card reveal"><i class="fas fa-code skill-icon"></i><span>C++</span></div>
+        </div>
+      </section>
+
+      <!-- ============ PROJECTS ============ -->
+      <section id="projects" class="section">
+        <div class="section-head reveal">
+          <span class="section-kicker">// things I've built</span>
+          <h2>Featured Projects</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <div class="project-top">
+              <i class="fab fa-ethereum project-icon"></i>
+              <div class="project-links">
+                <a
+                  href="https://github.com/Smith-Coder"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View on GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </div>
+            </div>
+            <h3>KryptGram</h3>
+            <p>
+              A blockchain application that lets users transfer cryptocurrency
+              through smart contracts — trustless, transparent, on-chain.
+            </p>
+            <ul class="project-tags">
+              <li>Solidity</li>
+              <li>Truffle</li>
+              <li>React</li>
+              <li>Web3</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal delay-1">
+            <div class="project-top">
+              <i class="fas fa-film project-icon"></i>
+              <div class="project-links">
+                <a
+                  href="https://github.com/Smith-Coder"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View on GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </div>
+            </div>
+            <h3>Movie App</h3>
+            <p>
+              Browse current, upcoming and classic movies with rich details,
+              powered by open-source movie APIs and a clean, responsive UI.
+            </p>
+            <ul class="project-tags">
+              <li>JavaScript</li>
+              <li>REST API</li>
+              <li>CSS3</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal delay-2">
+            <div class="project-top">
+              <i class="fas fa-calendar-check project-icon"></i>
+              <div class="project-links">
+                <a
+                  href="https://github.com/Smith-Coder"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View on GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </div>
+            </div>
+            <h3>Event Registration</h3>
+            <p>
+              Registration platform built for a national-level intercollegiate
+              fest — streamlined sign-ups for hundreds of participants.
+            </p>
+            <ul class="project-tags">
+              <li>ASP.NET MVC</li>
+              <li>MySQL</li>
+              <li>Bootstrap</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal delay-3">
+            <div class="project-top">
+              <i class="fas fa-ticket project-icon"></i>
+              <div class="project-links">
+                <a
+                  href="https://github.com/Smith-Coder"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View on GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </div>
+            </div>
+            <h3>Software Access Management</h3>
+            <p>
+              An IT ticketing platform for software installation requests that
+              turns a slow manual process into a few clicks.
+            </p>
+            <ul class="project-tags">
+              <li>.NET Core</li>
+              <li>Angular</li>
+              <li>Entity Framework</li>
+            </ul>
+          </article>
+        </div>
+        <p class="view-more reveal">
+          <a
+            href="https://github.com/Smith-Coder"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            See more on GitHub <i class="fas fa-arrow-right"></i>
+          </a>
+        </p>
+      </section>
+
+      <!-- ============ MILESTONES ============ -->
+      <section id="milestones" class="section">
+        <div class="section-head reveal">
+          <span class="section-kicker">// highlights</span>
+          <h2>Accomplishments</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fas fa-bus"></i></div>
+            <div class="timeline-card">
+              <h3>Smart BUS ASSIST</h3>
+              <p>
+                Entrepreneur idea published at the ETLTC International Japan
+                Mini-Conference (ACM Publications).
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fas fa-microchip"></i></div>
+            <div class="timeline-card">
+              <h3>Edge Computing Talk</h3>
+              <p>
+                Presented on Edge Computing at a national-level conference
+                organized by St. Joseph's College.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fas fa-users"></i></div>
+            <div class="timeline-card">
+              <h3>Web Dev Committee Head</h3>
+              <p>
+                Led the Web Development Committee for "Gateways 2022", a
+                national-level inter-college fest.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"><i class="fas fa-trophy"></i></div>
+            <div class="timeline-card">
+              <h3>Project X — Proof of Concept</h3>
+              <p>
+                Recognized for successfully integrating a Java and C#
+                application as a proof of concept.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section id="contact" class="section contact-section">
+        <div class="contact-card reveal">
+          <span class="section-kicker">// what's next</span>
+          <h2>Let's Build Something Great</h2>
+          <p>
+            Have an idea, a role, or just want to talk tech? My inbox is always
+            open — let's connect.
+          </p>
+          <div class="contact-actions">
+            <a
+              href="https://www.linkedin.com/in/smith-c-d"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-linkedin-in"></i> Connect on LinkedIn
+            </a>
+            <a
+              href="https://github.com/Smith-Coder"
+              class="btn btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-github"></i> Follow on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer-joke">
+        <span class="prompt">$</span> echo "There is no place like 127.0.0.1"
+      </p>
+      <p class="footer-copy">
+        Designed &amp; built by Smith C. D. · © <span id="year"></span>
+      </p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
