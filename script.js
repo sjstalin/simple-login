@@ -1,222 +1,306 @@
-// ============================================================
-// Smith C. D. — Portfolio interactions
-// ============================================================
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+// Reveal-on-scroll with per-batch stagger
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    let batchIndex = 0;
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const delay = prefersReduced ? 0 : Math.min(batchIndex++ * 90, 450);
+      entry.target.style.transitionDelay = `${delay}ms`;
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+);
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-  // ---------- footer year ----------
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+// Scroll progress, back-to-top visibility, and nav scroll-spy
+const progressBar = document.getElementById("progress");
+const toTopBtn = document.getElementById("toTop");
+const sections = [...document.querySelectorAll("section[id]")];
+const navLinks = [...document.querySelectorAll(".nav-links a[href^='#']")];
 
-  // ---------- typing effect ----------
-  const roles = [
-    "scalable .NET backends.",
-    "modern web apps.",
-    "smart contracts.",
-    "cloud solutions.",
-    "AI-powered products.",
-  ];
-  const typedEl = document.getElementById("typed");
+function onScroll() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`;
+  toTopBtn.classList.toggle("show", window.scrollY > 600);
 
-  if (typedEl) {
-    if (prefersReducedMotion) {
-      typedEl.textContent = roles[0];
-    } else {
-      let roleIndex = 0;
-      let charIndex = 0;
-      let deleting = false;
+  let current = "";
+  for (const section of sections) {
+    if (window.scrollY >= section.offsetTop - 140) current = section.id;
+  }
+  navLinks.forEach((link) =>
+    link.classList.toggle("active", link.getAttribute("href") === `#${current}`)
+  );
+}
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
 
-      const tick = () => {
-        const current = roles[roleIndex];
+toTopBtn.addEventListener("click", () =>
+  window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" })
+);
 
-        if (!deleting) {
-          charIndex++;
-          typedEl.textContent = current.slice(0, charIndex);
-          if (charIndex === current.length) {
-            deleting = true;
-            setTimeout(tick, 1800); // pause on full word
+// Typewriter in the hero
+const typewriterWords = [
+  ".NET Core backends",
+  "smart contracts in Solidity",
+  "Angular & React apps",
+  "cloud solutions on AWS & Azure",
+  "AI-powered features",
+];
+const typewriterEl = document.getElementById("typewriter");
+if (typewriterEl) {
+  if (prefersReduced) {
+    typewriterEl.textContent = typewriterWords[0];
+  } else {
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    (function tick() {
+      const word = typewriterWords[wordIndex];
+      charIndex += deleting ? -1 : 1;
+      typewriterEl.textContent = word.slice(0, charIndex);
+      let delay = deleting ? 40 : 75;
+      if (!deleting && charIndex === word.length) {
+        delay = 1800;
+        deleting = true;
+      } else if (deleting && charIndex === 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % typewriterWords.length;
+        delay = 350;
+      }
+      setTimeout(tick, delay);
+    })();
+  }
+}
+
+// Letter-by-letter headline reveal
+const heroHeading = document.querySelector(".hero h1");
+if (heroHeading && !prefersReduced) {
+  heroHeading.classList.add("split");
+  let letterDelay = 150;
+  (function splitLetters(node) {
+    [...node.childNodes].forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const fragment = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach((chunk) => {
+          if (!chunk) return;
+          if (/^\s+$/.test(chunk)) {
+            fragment.appendChild(document.createTextNode(" "));
             return;
           }
-          setTimeout(tick, 65);
-        } else {
-          charIndex--;
-          typedEl.textContent = current.slice(0, charIndex);
-          if (charIndex === 0) {
-            deleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-          }
-          setTimeout(tick, 35);
-        }
-      };
+          const word = document.createElement("span");
+          word.className = "word";
+          [...chunk].forEach((char) => {
+            const letter = document.createElement("span");
+            letter.className = "ltr";
+            letter.textContent = char;
+            letter.style.animationDelay = `${letterDelay}ms`;
+            letterDelay += 28;
+            word.appendChild(letter);
+          });
+          fragment.appendChild(word);
+        });
+        node.replaceChild(fragment, child);
+      } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== "BR") {
+        splitLetters(child);
+      }
+    });
+  })(heroHeading);
+}
 
-      tick();
-    }
+// Interactive particle network in the hero
+const netCanvas = document.getElementById("net");
+if (netCanvas && !prefersReduced) {
+  const ctx = netCanvas.getContext("2d");
+  const hero = netCanvas.closest(".hero");
+  const LINK_DIST = 110;
+  const MOUSE_DIST = 170;
+  const mouse = { x: null, y: null };
+  let width, height, particles = [], rafId = null;
+
+  function buildParticles() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = hero.clientWidth;
+    height = hero.clientHeight;
+    netCanvas.width = width * dpr;
+    netCanvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.min(110, Math.max(35, Math.round((width * height) / 16000)));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.7 + 0.9,
+      hue: Math.random() < 0.7 ? "79, 209, 197" : "124, 140, 248",
+    }));
   }
 
-  // ---------- navbar: scrolled state, progress bar, back-to-top ----------
-  const header = document.getElementById("header");
-  const progressBar = document.querySelector(".scroll-progress");
-  const backToTop = document.getElementById("backToTop");
+  function frame() {
+    ctx.clearRect(0, 0, width, height);
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.hue}, 0.7)`;
+      ctx.fill();
+    }
+    for (let i = 0; i < particles.length; i++) {
+      const a = particles[i];
+      for (let j = i + 1; j < particles.length; j++) {
+        const b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < LINK_DIST) {
+          ctx.strokeStyle = `rgba(79, 209, 197, ${(1 - dist / LINK_DIST) * 0.35})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+      if (mouse.x !== null) {
+        const dist = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (dist < MOUSE_DIST) {
+          ctx.strokeStyle = `rgba(124, 140, 248, ${(1 - dist / MOUSE_DIST) * 0.5})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+      }
+    }
+    rafId = requestAnimationFrame(frame);
+  }
 
-  const onScroll = () => {
-    const scrollY = window.scrollY;
-    header.classList.toggle("scrolled", scrollY > 30);
-    backToTop.classList.toggle("visible", scrollY > 600);
+  hero.addEventListener("mousemove", (event) => {
+    const rect = hero.getBoundingClientRect();
+    mouse.x = event.clientX - rect.left;
+    mouse.y = event.clientY - rect.top;
+  });
+  hero.addEventListener("mouseleave", () => { mouse.x = null; mouse.y = null; });
 
-    const doc = document.documentElement;
-    const max = doc.scrollHeight - doc.clientHeight;
-    progressBar.style.width = max > 0 ? `${(scrollY / max) * 100}%` : "0%";
-  };
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildParticles, 200);
+  });
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  // Only animate while the hero is on screen
+  new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && rafId === null) {
+        rafId = requestAnimationFrame(frame);
+      } else if (!entry.isIntersecting && rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    });
+  }).observe(hero);
 
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: prefersReducedMotion ? "auto" : "smooth",
+  buildParticles();
+}
+
+// Gentle parallax on the hero orbs
+const heroSection = document.querySelector(".hero");
+if (heroSection && !prefersReduced && matchMedia("(pointer: fine)").matches) {
+  const orbs = [...heroSection.querySelectorAll(".orb")];
+  const depths = [30, 22, 14];
+  heroSection.addEventListener("mousemove", (event) => {
+    const dx = event.clientX / window.innerWidth - 0.5;
+    const dy = event.clientY / window.innerHeight - 0.5;
+    orbs.forEach((orb, i) => {
+      orb.style.translate = `${dx * depths[i]}px ${dy * depths[i]}px`;
     });
   });
+}
 
-  // ---------- mobile menu ----------
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
-
-  const closeMenu = () => {
-    hamburger.classList.remove("open");
-    navLinks.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", "false");
-  };
-
-  hamburger.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
-    hamburger.classList.toggle("open", isOpen);
-    hamburger.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  navLinks.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
-
-  // ---------- active nav link highlighting ----------
-  const sections = document.querySelectorAll("main section[id]");
-  const linkFor = {};
-  document.querySelectorAll(".nav-link").forEach((link) => {
-    linkFor[link.getAttribute("href").slice(1)] = link;
-  });
-
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const link = linkFor[entry.target.id];
-        if (!link) return;
-        if (entry.isIntersecting) {
-          document
-            .querySelectorAll(".nav-link.active")
-            .forEach((l) => l.classList.remove("active"));
-          link.classList.add("active");
-        }
-      });
-    },
-    { rootMargin: "-40% 0px -55% 0px" }
-  );
-
-  sections.forEach((section) => sectionObserver.observe(section));
-
-  // ---------- scroll reveal ----------
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  document.querySelectorAll(".reveal").forEach((el) => {
-    revealObserver.observe(el);
-  });
-
-  // ---------- hero particle field ----------
-  const canvas = document.getElementById("particles");
-  if (canvas && !prefersReducedMotion) {
-    const ctx = canvas.getContext("2d");
-    const hero = canvas.parentElement;
-    let particles = [];
-    let raf;
-
-    const resize = () => {
-      canvas.width = hero.offsetWidth;
-      canvas.height = hero.offsetHeight;
-      const count = Math.min(90, Math.floor(canvas.width / 16));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.8 + 0.6,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-      }));
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 216, 255, 0.45)";
-        ctx.fill();
+// Count-up stats when they scroll into view
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      counterObserver.unobserve(entry.target);
+      const target = parseInt(entry.target.dataset.count, 10);
+      const suffix = entry.target.dataset.suffix || "";
+      if (prefersReduced) {
+        entry.target.textContent = target + suffix;
+        return;
       }
-
-      // connect nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 130) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 216, 255, ${0.14 * (1 - dist / 130)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      raf = requestAnimationFrame(draw);
-    };
-
-    resize();
-    draw();
-    window.addEventListener("resize", resize);
-
-    // pause the animation when the hero is off-screen
-    new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          cancelAnimationFrame(raf);
-          draw();
-        } else {
-          cancelAnimationFrame(raf);
-        }
+      const start = performance.now();
+      const duration = 1200;
+      requestAnimationFrame(function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        entry.target.textContent = Math.round(target * eased) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
       });
-    }).observe(hero);
-  }
+    });
+  },
+  { threshold: 0.5 }
+);
+document.querySelectorAll(".num[data-count]").forEach((el) => counterObserver.observe(el));
+
+// Cursor spotlight on cards
+document.querySelectorAll(".card").forEach((card) => {
+  card.addEventListener("mousemove", (event) => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  });
 });
+
+// Skill chips filter/highlight the project cards that use them
+const projectCards = [...document.querySelectorAll("#projects .card[data-skills]")];
+const filterNote = document.getElementById("filter-note");
+const filterLabel = filterNote?.querySelector("strong");
+
+function clearSkillFilter() {
+  projectCards.forEach((card) => card.classList.remove("dim", "match"));
+  document.querySelectorAll(".chips span.on").forEach((chip) => chip.classList.remove("on"));
+  if (filterNote) filterNote.hidden = true;
+}
+
+document.querySelectorAll(".chips span[data-skill]").forEach((chip) => {
+  const token = chip.dataset.skill;
+  const matches = projectCards.filter((card) =>
+    card.dataset.skills.split(" ").includes(token)
+  );
+  if (!matches.length) {
+    chip.removeAttribute("data-skill");
+    return;
+  }
+  chip.setAttribute("role", "button");
+  chip.setAttribute("tabindex", "0");
+  const activate = () => {
+    const wasOn = chip.classList.contains("on");
+    clearSkillFilter();
+    if (wasOn) return;
+    chip.classList.add("on");
+    projectCards.forEach((card) =>
+      card.classList.add(matches.includes(card) ? "match" : "dim")
+    );
+    filterLabel.textContent = chip.textContent.trim();
+    filterNote.hidden = false;
+    document.getElementById("projects").scrollIntoView({
+      behavior: prefersReduced ? "auto" : "smooth",
+    });
+  };
+  chip.addEventListener("click", activate);
+  chip.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activate();
+    }
+  });
+});
+
+filterNote?.querySelector("button")?.addEventListener("click", clearSkillFilter);

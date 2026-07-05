@@ -1,422 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-    <meta
-      http-equiv="Permissions-Policy"
-      content="geolocation=(), camera=(), microphone=()"
-    />
-    <meta
-      name="description"
-      content="Smith C. D. — Software Engineer crafting scalable .NET, web and blockchain solutions."
-    />
-    <title>Smith C. D. | Software Engineer</title>
-    <link rel="icon" href="Assets/sm.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- Scroll progress bar -->
-    <div class="scroll-progress" aria-hidden="true"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()" />
+  <title>Smith C. D. — Software Engineer</title>
+  <meta name="description" content="Portfolio of Smith C. D. — Software Engineer building .NET backends, modern web apps, and blockchain solutions." />
+  <link rel="icon" href="Assets/sm.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-    <!-- Decorative background -->
-    <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
-    <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+  <div id="progress" aria-hidden="true"></div>
 
-    <header id="header">
-      <nav class="navbar" aria-label="Primary">
-        <a href="#hero" class="logo" aria-label="Home">
-          <img src="Assets/sm.png" alt="Smith C D logo" />
-          <span class="logo-text">smith<span class="accent">.dev</span></span>
-        </a>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">Smith<em>.</em>CD</a>
+      <ul class="nav-links">
+        <li class="hide-mobile"><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li class="hide-mobile"><a href="#skills">Skills</a></li>
+        <li class="hide-mobile"><a href="#accomplishments">Accomplishments</a></li>
+        <li class="hide-mobile"><a href="#contact">Contact</a></li>
+        <li><a href="https://github.com/Smith-Coder" target="_blank" rel="noopener" class="cta">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#milestones" class="nav-link">Milestones</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-          <li>
-            <a
-              href="https://github.com/Smith-Coder"
-              class="nav-cta"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-github"></i> GitHub
-            </a>
-          </li>
-        </ul>
+  <header class="hero">
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="hero-photo">
+        <div class="photo-ring" aria-hidden="true"></div>
+        <img src="Assets/sm.png" alt="Smith C D logo" width="300" height="300"
+             onerror="this.closest('.hero-photo').classList.add('no-img')" />
+        <span class="photo-fallback" aria-hidden="true">SD</span>
+      </div>
+      <p class="kicker">Software Engineer · .NET × Web × Blockchain</p>
+      <h1>Building software that <br /><span class="grad">scales and ships.</span></h1>
+      <p class="intro"><span class="wave">👋</span> Hi, I'm <strong>Smith C. D.</strong></p>
+      <div class="hero-flow" role="img" aria-label="I turn ideas into code, APIs, cloud deployments, and shipped products">
+        <svg class="flow-desktop" viewBox="0 0 660 112" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 45H600" stroke="#2d3548" stroke-width="2"/>
+          <path class="flowdash" d="M60 45H600" stroke="#4fd1c5" stroke-width="2" stroke-dasharray="6 10" fill="none" opacity=".5"/>
+          <circle class="packet" r="4" fill="#f2c94c"><animateMotion dur="4s" repeatCount="indefinite" path="M60 45H600"/></circle>
+          <circle class="packet" r="3" fill="#4fd1c5"><animateMotion dur="4s" begin="1.3s" repeatCount="indefinite" path="M60 45H600"/></circle>
+          <circle class="packet" r="3" fill="#7c8cf8"><animateMotion dur="4s" begin="2.6s" repeatCount="indefinite" path="M60 45H600"/></circle>
+          <g class="fnode n1">
+            <circle cx="60" cy="45" r="26" fill="#161b22" stroke="#f2c94c" stroke-width="1.5"/>
+            <g class="ficon">
+              <circle cx="60" cy="42" r="8" fill="none" stroke="#f2c94c" stroke-width="2"/>
+              <path d="M56 50h8v3a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z" fill="#f2c94c"/>
+              <g stroke="#f2c94c" stroke-width="1.6" stroke-linecap="round">
+                <line x1="60" y1="28" x2="60" y2="31"/>
+                <line x1="48" y1="33" x2="50.5" y2="35.5"/>
+                <line x1="72" y1="33" x2="69.5" y2="35.5"/>
+              </g>
+            </g>
+            <text x="60" y="96">Ideas</text>
+          </g>
+          <g class="fnode n2">
+            <circle cx="195" cy="45" r="26" fill="#161b22" stroke="#4fd1c5" stroke-width="1.5"/>
+            <g class="ficon" stroke="#4fd1c5" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M187 38l-7 7 7 7"/>
+              <path d="M203 38l7 7-7 7"/>
+              <line x1="198" y1="35" x2="192" y2="55"/>
+            </g>
+            <text x="195" y="96">Code</text>
+          </g>
+          <g class="fnode n3">
+            <circle cx="330" cy="45" r="26" fill="#161b22" stroke="#7c8cf8" stroke-width="1.5"/>
+            <g class="ficon" fill="none" stroke="#7c8cf8" stroke-width="2" stroke-linecap="round">
+              <circle cx="330" cy="45" r="9"/>
+              <line x1="330" y1="30" x2="330" y2="34"/><line x1="330" y1="56" x2="330" y2="60"/>
+              <line x1="315" y1="45" x2="319" y2="45"/><line x1="341" y1="45" x2="345" y2="45"/>
+              <line x1="320" y1="35" x2="323" y2="38"/><line x1="337" y1="52" x2="340" y2="55"/>
+              <line x1="340" y1="35" x2="337" y2="38"/><line x1="323" y1="52" x2="320" y2="55"/>
+              <circle cx="330" cy="45" r="3" fill="#7c8cf8" stroke="none"/>
+            </g>
+            <text x="330" y="96">APIs</text>
+          </g>
+          <g class="fnode n4">
+            <circle cx="465" cy="45" r="26" fill="#161b22" stroke="#4fd1c5" stroke-width="1.5"/>
+            <g class="ficon">
+              <path d="M452 48a7 7 0 0 1 3-13 9 9 0 0 1 17-2 7 7 0 0 1 6 12 6 6 0 0 1-4 10h-18a7 7 0 0 1-4-7z" fill="none" stroke="#4fd1c5" stroke-width="2" stroke-linejoin="round"/>
+            </g>
+            <text x="465" y="96">Cloud</text>
+          </g>
+          <g class="fnode n5">
+            <circle cx="600" cy="45" r="26" fill="#161b22" stroke="#f2c94c" stroke-width="1.5"/>
+            <g class="ficon">
+              <path d="M600 28c5 5 7 12 7 17l-7 7-7-7c0-5 2-12 7-17z" fill="none" stroke="#f2c94c" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="600" cy="42" r="2.6" fill="#f2c94c"/>
+              <path d="M593 47l-4 6 6-1M607 47l4 6-6-1" fill="none" stroke="#f2c94c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="spark" d="M600 54v7" stroke="#f2c94c" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <text x="600" y="96">Products</text>
+          </g>
+        </svg>
+        <svg class="flow-mobile" viewBox="0 0 330 296" xmlns="http://www.w3.org/2000/svg">
+          <path d="M36 26V270" stroke="#2d3548" stroke-width="2"/>
+          <path class="flowdash" d="M36 26V270" stroke="#4fd1c5" stroke-width="2" stroke-dasharray="6 10" fill="none" opacity=".5"/>
+          <circle class="packet" r="4" fill="#f2c94c"><animateMotion dur="4s" repeatCount="indefinite" path="M36 26V270"/></circle>
+          <circle class="packet" r="3" fill="#4fd1c5"><animateMotion dur="4s" begin="1.3s" repeatCount="indefinite" path="M36 26V270"/></circle>
+          <circle class="packet" r="3" fill="#7c8cf8"><animateMotion dur="4s" begin="2.6s" repeatCount="indefinite" path="M36 26V270"/></circle>
+          <g class="fnode n1">
+            <circle cx="36" cy="26" r="22" fill="#161b22" stroke="#f2c94c" stroke-width="1.5"/>
+            <g transform="translate(36, 26)"><g class="ficon">
+              <circle cx="0" cy="-2" r="6.5" fill="none" stroke="#f2c94c" stroke-width="2"/>
+              <path d="M-3 4h6v2.5a1.6 1.6 0 0 1-1.6 1.6h-2.8a1.6 1.6 0 0 1-1.6-1.6z" fill="#f2c94c"/>
+              <g stroke="#f2c94c" stroke-width="1.5" stroke-linecap="round">
+                <line x1="0" y1="-13" x2="0" y2="-10.5"/>
+                <line x1="-9.5" y1="-8" x2="-7.5" y2="-6"/>
+                <line x1="9.5" y1="-8" x2="7.5" y2="-6"/>
+              </g>
+            </g></g>
+            <text x="72" y="31">Ideas</text>
+          </g>
+          <g class="fnode n2">
+            <circle cx="36" cy="87" r="22" fill="#161b22" stroke="#4fd1c5" stroke-width="1.5"/>
+            <g transform="translate(36, 87)"><g class="ficon" stroke="#4fd1c5" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M-6 -6l-6 6 6 6"/>
+              <path d="M6 -6l6 6-6 6"/>
+              <line x1="2.5" y1="-8" x2="-2.5" y2="8"/>
+            </g></g>
+            <text x="72" y="92">Code</text>
+          </g>
+          <g class="fnode n3">
+            <circle cx="36" cy="148" r="22" fill="#161b22" stroke="#7c8cf8" stroke-width="1.5"/>
+            <g transform="translate(36, 148)"><g class="ficon" fill="none" stroke="#7c8cf8" stroke-width="2" stroke-linecap="round">
+              <circle cx="0" cy="0" r="7.5"/>
+              <line x1="0" y1="-13" x2="0" y2="-9.5"/><line x1="0" y1="9.5" x2="0" y2="13"/>
+              <line x1="-13" y1="0" x2="-9.5" y2="0"/><line x1="9.5" y1="0" x2="13" y2="0"/>
+              <line x1="-9" y1="-9" x2="-6.5" y2="-6.5"/><line x1="6.5" y1="6.5" x2="9" y2="9"/>
+              <line x1="9" y1="-9" x2="6.5" y2="-6.5"/><line x1="-6.5" y1="6.5" x2="-9" y2="9"/>
+              <circle cx="0" cy="0" r="2.5" fill="#7c8cf8" stroke="none"/>
+            </g></g>
+            <text x="72" y="153">APIs</text>
+          </g>
+          <g class="fnode n4">
+            <circle cx="36" cy="209" r="22" fill="#161b22" stroke="#4fd1c5" stroke-width="1.5"/>
+            <g transform="translate(36, 209)"><g class="ficon">
+              <path d="M-11 3a6 6 0 0 1 2.5-11 7.5 7.5 0 0 1 14.5-1.5 6 6 0 0 1 5 10 5 5 0 0 1-3.5 8.5h-15a6 6 0 0 1-3.5-6z" fill="none" stroke="#4fd1c5" stroke-width="2" stroke-linejoin="round"/>
+            </g></g>
+            <text x="72" y="214">Cloud</text>
+          </g>
+          <g class="fnode n5">
+            <circle cx="36" cy="270" r="22" fill="#161b22" stroke="#f2c94c" stroke-width="1.5"/>
+            <g transform="translate(36, 270)"><g class="ficon">
+              <path d="M0 -14c4 4 5.5 10 5.5 14L0 5.5-5.5 0c0-4 1.5-10 5.5-14z" fill="none" stroke="#f2c94c" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="0" cy="-3" r="2.2" fill="#f2c94c"/>
+              <path d="M-5.5 4l-3.5 5 5-1M5.5 4l3.5 5-5-1" fill="none" stroke="#f2c94c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="spark" d="M0 6v5.5" stroke="#f2c94c" stroke-width="2" stroke-linecap="round"/>
+            </g></g>
+            <text x="72" y="275">Products</text>
+          </g>
+        </svg>
+      </div>
+      <p class="typeline">Right now I'm building <strong id="typewriter"></strong><span class="caret" aria-hidden="true"></span></p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn primary">See my work</a>
+        <a href="#contact" class="btn">Get in touch</a>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">📰 Published at ETLTC Japan (ACM)</span>
+        <span class="badge">🧑‍💻 Web Dev Head, Gateways 2022</span>
+        <span class="badge">🏆 Project X POC recognition</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">Programming languages</div></div>
+        <div class="stat"><div class="num" data-count="18" data-suffix="+">0</div><div class="lbl">Technologies in the toolbox</div></div>
+        <div class="stat"><div class="num" data-count="4">0</div><div class="lbl">Featured projects</div></div>
+        <div class="stat"><div class="num" data-count="1">0</div><div class="lbl">ACM publication</div></div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint" aria-label="Scroll to about"></a>
+  </header>
 
-        <button
-          class="hamburger"
-          id="hamburger"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-    </header>
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title"><span>01.</span> About</h2>
+      <p class="section-sub">Engineer, builder, problem solver.</p>
+      <div class="about-text reveal">
+        <p>I'm a software engineer with expertise in <strong>.NET Core</strong>, <strong>ASP.NET MVC</strong>, <strong>Entity Framework</strong>, and DevOps, paired with front-end skills in <strong>Angular</strong> and <strong>ReactJS</strong>.</p>
+        <p>I'm fluent across <strong>Java, C#, TypeScript, JavaScript, Python, and C++</strong>, comfortable with <strong>MySQL</strong> and <strong>MongoDB</strong>, and I ship to the cloud on <strong>AWS</strong> and <strong>Azure</strong>. On the frontier side, I build blockchain apps with <strong>Solidity</strong> and Truffle — and I'm passionate about integrating <strong>AI</strong> into real applications.</p>
+        <p>What drives me: scalable solutions, tough problems, and teams that build great things together.</p>
+      </div>
+    </div>
+  </section>
 
-    <main>
-      <!-- ============ HERO ============ -->
-      <section id="hero" class="hero-section">
-        <canvas id="particles" aria-hidden="true"></canvas>
-        <div class="hero-inner">
-          <p class="hero-greeting reveal">
-            <span class="wave" aria-hidden="true">👋</span> Hey there, I'm
-          </p>
-          <h1 class="hero-name reveal delay-1">Smith&nbsp;C.&nbsp;D.</h1>
-          <h2 class="hero-role reveal delay-2">
-            <span class="typed-prefix">I build&nbsp;</span
-            ><span id="typed" class="typed"></span><span class="cursor">|</span>
-          </h2>
-          <p class="hero-tagline reveal delay-3">
-            Software engineer turning ideas into fast, scalable products —
-            from .NET backends and modern web apps to smart contracts on the
-            blockchain.
-          </p>
-          <div class="hero-actions reveal delay-4">
-            <a href="#projects" class="btn btn-primary">
-              <i class="fas fa-rocket"></i> Explore My Work
-            </a>
-            <a href="#contact" class="btn btn-ghost">
-              <i class="fas fa-paper-plane"></i> Get In Touch
-            </a>
+  <section id="projects" style="background: var(--bg-soft);">
+    <div class="container">
+      <h2 class="section-title"><span>02.</span> Projects</h2>
+      <p class="section-sub">Things I've designed, built, and shipped.</p>
+      <p id="filter-note" hidden>Highlighting projects using <strong></strong> <button type="button">✕ Show all</button></p>
+      <div class="grid">
+        <div class="card reveal" data-skills="solidity truffle blockchain react javascript">
+          <div class="card-visual v-chain" aria-hidden="true">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <rect class="block" x="24" y="38" width="32" height="24" rx="6" fill="#1c2333" stroke="#7c8cf8" stroke-width="1.5"/>
+              <line x1="56" y1="50" x2="68" y2="50" stroke="#4fd1c5" stroke-width="3"/>
+              <rect class="block glowblock" x="68" y="38" width="32" height="24" rx="6" fill="#1c2333" stroke="#4fd1c5" stroke-width="1.5"/>
+              <line x1="100" y1="50" x2="112" y2="50" stroke="#4fd1c5" stroke-width="3"/>
+              <rect class="block" x="112" y="38" width="32" height="24" rx="6" fill="#1c2333" stroke="#7c8cf8" stroke-width="1.5"/>
+              <line x1="144" y1="50" x2="156" y2="50" stroke="#4fd1c5" stroke-width="3"/>
+              <rect class="block newblock" x="156" y="38" width="32" height="24" rx="6" fill="#1c2333" stroke="#f2c94c" stroke-width="1.5"/>
+            </svg>
           </div>
-          <div class="hero-socials reveal delay-5">
-            <a
-              href="https://github.com/Smith-Coder"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/in/smith-c-d"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
+          <h3>KryptGram</h3>
+          <p>Blockchain application that lets users transfer cryptocurrency through smart contracts written in Solidity — trustless, transparent, on-chain.</p>
+          <div class="tags"><span>Solidity</span><span>Truffle</span><span>Smart Contracts</span><span>Web3</span></div>
+        </div>
+        <div class="card reveal" data-skills="javascript rest css html">
+          <div class="card-visual v-film" aria-hidden="true">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <g class="reel">
+                <circle cx="62" cy="50" r="22" fill="none" stroke="#7c8cf8" stroke-width="2.5"/>
+                <circle cx="62" cy="50" r="4" fill="#7c8cf8"/>
+                <circle cx="62" cy="36" r="4.5" fill="none" stroke="#7c8cf8" stroke-width="2"/>
+                <circle cx="62" cy="64" r="4.5" fill="none" stroke="#7c8cf8" stroke-width="2"/>
+                <circle cx="48" cy="50" r="4.5" fill="none" stroke="#7c8cf8" stroke-width="2"/>
+                <circle cx="76" cy="50" r="4.5" fill="none" stroke="#7c8cf8" stroke-width="2"/>
+              </g>
+              <rect x="108" y="28" width="70" height="44" rx="7" fill="#1c2333" stroke="#4fd1c5" stroke-width="1.5"/>
+              <path class="play" d="M136 41l16 9-16 9z" fill="#f2c94c"/>
+            </svg>
           </div>
+          <h3>Movie App</h3>
+          <p>Lists current, upcoming, and past movies with rich details, fetching data from open-source movie APIs behind a clean, responsive UI.</p>
+          <div class="tags"><span>JavaScript</span><span>REST APIs</span><span>HTML5</span><span>CSS3</span></div>
         </div>
-        <a href="#about" class="scroll-hint" aria-label="Scroll to about section">
-          <span class="mouse"><span class="wheel"></span></span>
-        </a>
-      </section>
-
-      <!-- ============ ABOUT ============ -->
-      <section id="about" class="section">
-        <div class="section-head reveal">
-          <span class="section-kicker">// about me</span>
-          <h2>Engineer. Builder. Problem&nbsp;Solver.</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-text reveal">
-            <p>
-              I'm a software engineer with deep expertise in
-              <strong>.NET Core</strong>, <strong>ASP.NET MVC</strong>,
-              <strong>Entity Framework</strong> and DevOps, paired with strong
-              front-end chops in <strong>Angular</strong> and
-              <strong>React</strong>.
-            </p>
-            <p>
-              I'm fluent across <strong>C#, Java, TypeScript, JavaScript,
-              Python and C++</strong>, comfortable with <strong>MySQL</strong>
-              and <strong>MongoDB</strong>, and I ship to the cloud on
-              <strong>AWS</strong> and <strong>Azure</strong>. On the frontier
-              side, I build blockchain apps with <strong>Solidity</strong> and
-              Truffle, and I love weaving <strong>AI</strong> into real
-              products.
-            </p>
-            <p>
-              What drives me? Scalable architecture, elegant solutions to messy
-              problems, and teams that build great things together.
-            </p>
+        <div class="card reveal" data-skills="aspnet csharp mysql">
+          <div class="card-visual v-cal" aria-hidden="true">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="62" y="22" width="76" height="60" rx="8" fill="#1c2333" stroke="#7c8cf8" stroke-width="1.5"/>
+              <line x1="62" y1="38" x2="138" y2="38" stroke="#7c8cf8" stroke-width="1.5"/>
+              <line x1="78" y1="16" x2="78" y2="28" stroke="#7c8cf8" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="122" y1="16" x2="122" y2="28" stroke="#7c8cf8" stroke-width="2.5" stroke-linecap="round"/>
+              <path class="tick" d="M84 58l10 10 22-20" fill="none" stroke="#4fd1c5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="conf c1" cx="46" cy="34" r="3" fill="#f2c94c"/>
+              <circle class="conf c2" cx="154" cy="44" r="3" fill="#4fd1c5"/>
+              <circle class="conf c3" cx="150" cy="76" r="3" fill="#7c8cf8"/>
+            </svg>
           </div>
-          <div class="about-cards">
-            <div class="about-card reveal delay-1">
-              <i class="fas fa-server"></i>
-              <h3>Backend &amp; Cloud</h3>
-              <p>.NET Core APIs, microservices &amp; CI/CD on AWS / Azure</p>
-            </div>
-            <div class="about-card reveal delay-2">
-              <i class="fas fa-laptop-code"></i>
-              <h3>Frontend</h3>
-              <p>Snappy, responsive UIs with Angular &amp; React</p>
-            </div>
-            <div class="about-card reveal delay-3">
-              <i class="fas fa-link"></i>
-              <h3>Blockchain</h3>
-              <p>Smart contracts in Solidity, dApps with Truffle</p>
-            </div>
-            <div class="about-card reveal delay-4">
-              <i class="fas fa-brain"></i>
-              <h3>AI Curious</h3>
-              <p>Integrating intelligence into everyday applications</p>
-            </div>
+          <h3>Event Registration</h3>
+          <p>Registration platform built for a national-level intercollegiate fest, enabling streamlined participant sign-ups at scale.</p>
+          <div class="tags"><span>ASP.NET MVC</span><span>C#</span><span>MySQL</span></div>
+        </div>
+        <div class="card reveal" data-skills="dotnet csharp angular ef">
+          <div class="card-visual v-gears" aria-hidden="true">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <g class="gear g1" fill="none" stroke="#4fd1c5" stroke-width="3" stroke-linecap="round">
+                <circle cx="85" cy="45" r="15"/>
+                <line x1="85" y1="24" x2="85" y2="30"/><line x1="85" y1="60" x2="85" y2="66"/>
+                <line x1="64" y1="45" x2="70" y2="45"/><line x1="100" y1="45" x2="106" y2="45"/>
+                <line x1="70" y1="30" x2="74" y2="34"/><line x1="96" y1="56" x2="100" y2="60"/>
+                <line x1="100" y1="30" x2="96" y2="34"/><line x1="74" y1="56" x2="70" y2="60"/>
+                <circle cx="85" cy="45" r="4" fill="#4fd1c5" stroke="none"/>
+              </g>
+              <g class="gear g2" fill="none" stroke="#f2c94c" stroke-width="2.5" stroke-linecap="round">
+                <circle cx="125" cy="68" r="10"/>
+                <line x1="125" y1="53" x2="125" y2="58"/><line x1="125" y1="78" x2="125" y2="83"/>
+                <line x1="110" y1="68" x2="115" y2="68"/><line x1="135" y1="68" x2="140" y2="68"/>
+                <circle cx="125" cy="68" r="3" fill="#f2c94c" stroke="none"/>
+              </g>
+            </svg>
           </div>
+          <h3>Software Access Management</h3>
+          <p>IT ticketing platform for software installation requests — turning a slow, manual approval process into a few clicks.</p>
+          <div class="tags"><span>.NET Core</span><span>Angular</span><span>Entity Framework</span></div>
         </div>
-      </section>
+      </div>
+      <p class="view-more"><a href="https://github.com/Smith-Coder" target="_blank" rel="noopener">View more projects on GitHub →</a></p>
+    </div>
+  </section>
 
-      <!-- ============ SKILLS ============ -->
-      <section id="skills" class="section">
-        <div class="section-head reveal">
-          <span class="section-kicker">// toolbox</span>
-          <h2>Skills &amp; Technologies</h2>
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title"><span>03.</span> Skills</h2>
+      <p class="section-sub">The tools I reach for — click a highlighted skill to see it in action in my projects.</p>
+      <div class="skill-groups">
+        <div class="skill-group reveal">
+          <h3>Backend &amp; .NET</h3>
+          <div class="chips"><span data-skill="csharp">C#</span><span data-skill="dotnet">.NET Core</span><span data-skill="aspnet">ASP.NET MVC</span><span data-skill="ef">Entity Framework</span><span>Node.js</span><span data-skill="rest">REST APIs</span></div>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card reveal"><img src="Assets/c-sharp.png" alt="" /><span>C#</span></div>
-          <div class="skill-card reveal"><img src="Assets/dotnet.png" alt="" /><span>.NET Core</span></div>
-          <div class="skill-card reveal"><img src="Assets/ef.png" alt="" /><span>Entity Framework</span></div>
-          <div class="skill-card reveal"><img src="Assets/Angular.png" alt="" /><span>Angular</span></div>
-          <div class="skill-card reveal"><img src="Assets/react.png" alt="" /><span>React</span></div>
-          <div class="skill-card reveal"><img src="Assets/node.png" alt="" /><span>Node.js</span></div>
-          <div class="skill-card reveal"><img src="Assets/js.png" alt="" /><span>JavaScript</span></div>
-          <div class="skill-card reveal"><img src="Assets/typescript.png" alt="" /><span>TypeScript</span></div>
-          <div class="skill-card reveal"><img src="Assets/html.png" alt="" /><span>HTML5</span></div>
-          <div class="skill-card reveal"><img src="Assets/css.png" alt="" /><span>CSS3</span></div>
-          <div class="skill-card reveal"><img src="Assets/mysql.png" alt="" /><span>MySQL</span></div>
-          <div class="skill-card reveal"><img src="Assets/git.png" alt="" /><span>Git</span></div>
-          <div class="skill-card reveal"><img src="Assets/postman.png" alt="" /><span>Postman</span></div>
-          <div class="skill-card reveal"><img src="Assets/azure.png" alt="" /><span>Azure</span></div>
-          <div class="skill-card reveal"><i class="fab fa-aws skill-icon"></i><span>AWS</span></div>
-          <div class="skill-card reveal"><i class="fas fa-database skill-icon"></i><span>MongoDB</span></div>
-          <div class="skill-card reveal"><i class="fab fa-ethereum skill-icon"></i><span>Solidity</span></div>
-          <div class="skill-card reveal"><i class="fab fa-python skill-icon"></i><span>Python</span></div>
-          <div class="skill-card reveal"><i class="fab fa-java skill-icon"></i><span>Java</span></div>
-          <div class="skill-card reveal"><i class="fas fa-code skill-icon"></i><span>C++</span></div>
+        <div class="skill-group reveal">
+          <h3>Frontend</h3>
+          <div class="chips"><span data-skill="angular">Angular</span><span data-skill="react">React</span><span data-skill="javascript">JavaScript</span><span>TypeScript</span><span data-skill="html">HTML5</span><span data-skill="css">CSS3</span></div>
         </div>
-      </section>
-
-      <!-- ============ PROJECTS ============ -->
-      <section id="projects" class="section">
-        <div class="section-head reveal">
-          <span class="section-kicker">// things I've built</span>
-          <h2>Featured Projects</h2>
+        <div class="skill-group reveal">
+          <h3>Data, Cloud &amp; Tools</h3>
+          <div class="chips"><span data-skill="mysql">MySQL</span><span>MongoDB</span><span>AWS</span><span>Azure</span><span>Git</span><span>Postman</span><span>DevOps</span></div>
         </div>
-        <div class="project-grid">
-          <article class="project-card reveal">
-            <div class="project-top">
-              <i class="fab fa-ethereum project-icon"></i>
-              <div class="project-links">
-                <a
-                  href="https://github.com/Smith-Coder"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View on GitHub"
-                  ><i class="fab fa-github"></i
-                ></a>
-              </div>
-            </div>
-            <h3>KryptGram</h3>
-            <p>
-              A blockchain application that lets users transfer cryptocurrency
-              through smart contracts — trustless, transparent, on-chain.
-            </p>
-            <ul class="project-tags">
-              <li>Solidity</li>
-              <li>Truffle</li>
-              <li>React</li>
-              <li>Web3</li>
-            </ul>
-          </article>
-
-          <article class="project-card reveal delay-1">
-            <div class="project-top">
-              <i class="fas fa-film project-icon"></i>
-              <div class="project-links">
-                <a
-                  href="https://github.com/Smith-Coder"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View on GitHub"
-                  ><i class="fab fa-github"></i
-                ></a>
-              </div>
-            </div>
-            <h3>Movie App</h3>
-            <p>
-              Browse current, upcoming and classic movies with rich details,
-              powered by open-source movie APIs and a clean, responsive UI.
-            </p>
-            <ul class="project-tags">
-              <li>JavaScript</li>
-              <li>REST API</li>
-              <li>CSS3</li>
-            </ul>
-          </article>
-
-          <article class="project-card reveal delay-2">
-            <div class="project-top">
-              <i class="fas fa-calendar-check project-icon"></i>
-              <div class="project-links">
-                <a
-                  href="https://github.com/Smith-Coder"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View on GitHub"
-                  ><i class="fab fa-github"></i
-                ></a>
-              </div>
-            </div>
-            <h3>Event Registration</h3>
-            <p>
-              Registration platform built for a national-level intercollegiate
-              fest — streamlined sign-ups for hundreds of participants.
-            </p>
-            <ul class="project-tags">
-              <li>ASP.NET MVC</li>
-              <li>MySQL</li>
-              <li>Bootstrap</li>
-            </ul>
-          </article>
-
-          <article class="project-card reveal delay-3">
-            <div class="project-top">
-              <i class="fas fa-ticket project-icon"></i>
-              <div class="project-links">
-                <a
-                  href="https://github.com/Smith-Coder"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View on GitHub"
-                  ><i class="fab fa-github"></i
-                ></a>
-              </div>
-            </div>
-            <h3>Software Access Management</h3>
-            <p>
-              An IT ticketing platform for software installation requests that
-              turns a slow manual process into a few clicks.
-            </p>
-            <ul class="project-tags">
-              <li>.NET Core</li>
-              <li>Angular</li>
-              <li>Entity Framework</li>
-            </ul>
-          </article>
+        <div class="skill-group reveal">
+          <h3>Blockchain &amp; Languages</h3>
+          <div class="chips"><span data-skill="solidity">Solidity</span><span data-skill="truffle">Truffle</span><span data-skill="blockchain">Blockchain</span><span>Java</span><span>Python</span><span>C++</span></div>
         </div>
-        <p class="view-more reveal">
-          <a
-            href="https://github.com/Smith-Coder"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            See more on GitHub <i class="fas fa-arrow-right"></i>
-          </a>
-        </p>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- ============ MILESTONES ============ -->
-      <section id="milestones" class="section">
-        <div class="section-head reveal">
-          <span class="section-kicker">// highlights</span>
-          <h2>Accomplishments</h2>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"><i class="fas fa-bus"></i></div>
-            <div class="timeline-card">
-              <h3>Smart BUS ASSIST</h3>
-              <p>
-                Entrepreneur idea published at the ETLTC International Japan
-                Mini-Conference (ACM Publications).
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"><i class="fas fa-microchip"></i></div>
-            <div class="timeline-card">
-              <h3>Edge Computing Talk</h3>
-              <p>
-                Presented on Edge Computing at a national-level conference
-                organized by St. Joseph's College.
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"><i class="fas fa-users"></i></div>
-            <div class="timeline-card">
-              <h3>Web Dev Committee Head</h3>
-              <p>
-                Led the Web Development Committee for "Gateways 2022", a
-                national-level inter-college fest.
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"><i class="fas fa-trophy"></i></div>
-            <div class="timeline-card">
-              <h3>Project X — Proof of Concept</h3>
-              <p>
-                Recognized for successfully integrating a Java and C#
-                application as a proof of concept.
-              </p>
-            </div>
+  <section id="accomplishments" class="accomplishments" style="background: var(--bg-soft);">
+    <div class="container">
+      <h2 class="section-title"><span>04.</span> Accomplishments</h2>
+      <p class="section-sub">Recognition along the way.</p>
+      <div class="grid">
+        <div class="card reveal">
+          <div class="icon">📰</div>
+          <div>
+            <h3>Smart BUS ASSIST — Published</h3>
+            <p>Entrepreneur idea published at the ETLTC International Japan Mini-Conference (ACM Publications).</p>
           </div>
         </div>
-      </section>
-
-      <!-- ============ CONTACT ============ -->
-      <section id="contact" class="section contact-section">
-        <div class="contact-card reveal">
-          <span class="section-kicker">// what's next</span>
-          <h2>Let's Build Something Great</h2>
-          <p>
-            Have an idea, a role, or just want to talk tech? My inbox is always
-            open — let's connect.
-          </p>
-          <div class="contact-actions">
-            <a
-              href="https://www.linkedin.com/in/smith-c-d"
-              class="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-linkedin-in"></i> Connect on LinkedIn
-            </a>
-            <a
-              href="https://github.com/Smith-Coder"
-              class="btn btn-ghost"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-github"></i> Follow on GitHub
-            </a>
+        <div class="card reveal">
+          <div class="icon">🎤</div>
+          <div>
+            <h3>Edge Computing Presentation</h3>
+            <p>Presented on Edge Computing at a national-level conference organized by St. Joseph's College.</p>
           </div>
         </div>
-      </section>
-    </main>
+        <div class="card reveal">
+          <div class="icon">🧑‍💻</div>
+          <div>
+            <h3>Web Development Committee Head</h3>
+            <p>Led the Web Development Committee for "Gateways 2022", a national-level inter-college fest.</p>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🏆</div>
+          <div>
+            <h3>Project X — Proof of Concept</h3>
+            <p>Recognized for the successful integration of a Java and C# application as a proof of concept.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer class="footer">
-      <p class="footer-joke">
-        <span class="prompt">$</span> echo "There is no place like 127.0.0.1"
-      </p>
-      <p class="footer-copy">
-        Designed &amp; built by Smith C. D. · © <span id="year"></span>
-      </p>
-    </footer>
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title" style="text-align:center;"><span>05.</span> Get in touch</h2>
+      <p>Open to conversations about .NET, web development, and blockchain. The fastest way to reach me is LinkedIn or GitHub.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a class="btn primary" href="https://www.linkedin.com/in/smith-c-d" target="_blank" rel="noopener">in/ LinkedIn</a>
+        <a class="btn" href="https://github.com/Smith-Coder" target="_blank" rel="noopener">gh/ GitHub</a>
+      </div>
+    </div>
+  </section>
 
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <i class="fas fa-arrow-up"></i>
-    </button>
+  <footer>
+    <div class="container">© 2026 Smith C. D. · There is no place like 127.0.0.1</div>
+  </footer>
 
-    <script src="script.js"></script>
-  </body>
+  <button id="toTop" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
 </html>
